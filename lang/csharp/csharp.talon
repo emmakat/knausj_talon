@@ -1,5 +1,5 @@
 mode: user.csharp
-mode: command 
+mode: command
 and code.language: csharp
 -
 tag(): user.code_operators
@@ -50,8 +50,8 @@ action(user.code_operator_bitwise_left_shift): " << "
 action(user.code_operator_bitwise_left_shift_assignment): " <<= "
 action(user.code_operator_bitwise_right_shift): " >> "
 action(user.code_operator_bitwise_right_shift_assignment): " >>= "
-action(user.code_block): 
-    insert("{}") 
+action(user.code_block):
+    insert("{}")
 	key(left enter enter up tab)
 action(user.code_self): "this"
 action(user.code_null): "null"
@@ -103,7 +103,7 @@ action(user.code_include_system): insert("using ")
 action(user.code_include_local): insert('using ')
 action(user.code_comment): "//"
 
-^funky <user.text>$: user.code_private_function(text)
+^funky <user.text>$: user.code_default_function(text)
 ^pro funky <user.text>$: user.code_protected_function(text)
 ^pub funky <user.text>$: user.code_public_function(text)
 ^static funky <user.text>$: user.code_private_static_function(text)

@@ -1,11 +1,6 @@
-# Talon documentation
-For up-to-date documentation on Talon's API and features, please visit https://talon.wiki/. 
-
-https://talon.wiki/unofficial_talon_docs/ is a great place to learn about Talon files, actions, and voice command definitions.
-
 # knausj_talon
 
-Talon configs for Mac, Windows, and Linux. Very much in progress. This is also intended to work with both Dragon Naturally Speaking and wav2letter.\
+Talon configs for Mac, Windows, and Linux. Very much in progress. This is also intended to work with both Dragon Naturally Speaking and wav2letter.
 
 Notes: 
 - commands are subject to change. We do our best to minimize changes, but we are moving to an [object][verb] standard slowly but surely.
@@ -23,17 +18,22 @@ git clone git@github.com:knausj85/knausj_talon.git knausj_talon
     
 Alternatively, access the directory by right clicking the Talon icon in taskbar, clicking Scripting>Open ~/talon, and navigating to user.
 
-The folder structure should look like:
+The folder structure should look something like the below:
 
 ```insert code:
 ~/.talon/user/knausj_talon
+~/.talon/user/knausj_talon/apps
 ~/.talon/user/knausj_talon/code
 ~/.talon/user/knausj_talon/lang
+~/.talon/user/knausj_talon/misc
+~/.talon/user/knausj_talon/modes
+~/.talon/user/knausj_talon/mouse_grid
+~/.talon/user/knausj_talon/talon_draft_window
+~/.talon/user/knausj_talon/text
+...
 ```
 
 ## Windows setup
-
-Note: Talon for Windows should be placed in the Program Files directory (or another 'secure' directory): `C:\Program Files\talon` Talon has been signed and utilizes uiAccess for several goodies: this will allow Talon to work with applications that are run as admin.
 
 Clone repo into `%AppData%\Talon\user` 
 
@@ -44,15 +44,22 @@ git clone git@github.com:knausj85/knausj_talon.git knausj_talon
     
 Alternatively, access the directory by right clicking the Talon icon in taskbar, clicking Scripting>Open ~/talon, and navigating to user.
     
-The folder structure should look like:
+The folder structure should look something like the below:
 
 ```insert code:
 %AppData%\Talon\user\knausj_talon
+%AppData%\Talon\user\knausj_talon\apps
 %AppData%\Talon\user\knausj_talon\code
 %AppData%\Talon\user\knausj_talon\lang
+%AppData%\Talon\user\knausj_talon\misc
+%AppData%\Talon\user\knausj_talon\modes
+%AppData%\Talon\user\knausj_talon\mouse_grid
+%AppData%\Talon\user\knausj_talon\talon_draft_window
+%AppData%\Talon\user\knausj_talon\text
+...
 ```
 
-## Getting started with Talon for coding with this depot
+## Getting started with Talon
 
 1. `help active` will display the available commands for the active application. 
     - Available commands can change with the application, or even window title that has focus. 
@@ -79,16 +86,33 @@ If you use vim, just start with the numbers and alphabet, otherwise look at gene
 The alphabet is defined here
 https://github.com/knausj85/knausj_talon/blob/master/code/keys.py#L6
 
+`help alphabet` will open a window that displays the alphabet. `help close` to hide the window.
+
 Try saying e.g. `air bat cap` to insert abc.
 
+
 ### Keys
-Keys are defined here
-https://github.com/knausj85/knausj_talon/blob/master/code/keys.py#L67
+Keys are defined in keys.py from line 83 - 182. The alphabet is used for A-Z.
+https://github.com/knausj85/knausj_talon/blob/84c6f637ba8304352aa15e01b030e8fa36f4f1a2/code/keys.py#L83
 
-Try saying e.g. `control air` to press control-a
-
-All key-related voice commands are defined here
+All key commands are defined in keys.talon
 https://github.com/knausj85/knausj_talon/blob/master/misc/keys.talon
+
+On Windows, try commands such as 
+
+`control air` to press `control-a` and select all.
+
+`super-shift-sun` to press `windows-shift-s` to trigger the screenshot application (Windows 10). Then try `escape` to exit the screenshot application.
+
+
+On Mac, try commands such as 
+
+`command air` to press `command-a` and select all.
+
+`control shift command 4` to press ` ctrl-shift-cmd-4` to trigger the screenshot application. Then try `escape` to exit the screenshot application. Please note the order of the modifiers doesn't matter.
+
+
+Any combination of the modifiers, symbols, alphabet, numbers and function keys can be executed via voice to execute shorcuts. Out of the box, only the modifier keys (command, shift, alt, super) cannot be triggered by themselves. 
 
 ### Symbols
 Some symbols are defined in keys.py, so you can say e.g. `control colon` to press those keys.
@@ -123,27 +147,31 @@ These generic commands are global. Commands such as `go word left` will work in 
 For repeating commands, useful voice commands are defined here:
 https://github.com/knausj85/knausj_talon/blob/ced46aee4b59e6ec5e8545bb01434e27792c830e/misc/repeater.talon#L2
 
-For example, saying `go up fifth` will go up five lines.
+Try saying e.g. `go up fifth` will go up five lines.
+Try saying e.g. `select up third` to hit `shift-up` three times to select some lines in a text field.
 
 ### Window management
 Global window managment commands are defined here:
 https://github.com/knausj85/knausj_talon/blob/master/misc/window_management.talon#L1
 
-e.g., `focus chrome` will focus the chrome application.
+`running list` will toggle a GUI list of words you can say to switch to running applications.
+`focus chrome` will focus the chrome application.
+`launch music` will launch the music application. Note this is currently only implemented on Mac OS X.
 
 ### Screenshot commands
 
+https://github.com/knausj85/knausj_talon/blob/master/misc/screenshot.talon
 
-### Activating Programming Languages
+### Programming Languages
 
 Specific programming languages may be activated by voice commands, or via title tracking.
 
 Activating languages via commands will enable the commands globally, e.g. they'll work in any application. This will also disable the title tracking method (code.language in .talon files) until the "clear language modes" voice command is used.
 
-The commands are defined here: 
-https://github.com/knausj85/knausj_talon/blob/69d0207c873e860002b137f985dd7cb001183a47/modes/modes.talon#L29
+The commands for enabling languages are defined here: 
+https://github.com/knausj85/knausj_talon/blob/master/modes/language_modes.talon
 
-By default, title tracking activates coding languages in supported applications such as VSCode, Visual Studio (requires plugin),  and Notepad++. 
+By default, title tracking activates coding languages in supported applications such as VSCode, Visual Studio (requires plugin), and Notepad++. 
 
 To enable title tracking for your application: 
 1. The active filename (including extension) must be included in the editor's title
@@ -157,7 +185,7 @@ Python, C#, Talon and javascript language support is currently broken up into ~f
 
 • programming.talon - function, loop commands, etc
 
-• {your-language-here}.talon - for implementation of the actions for the above, and any language-specific stuff
+• {your-language-here}.talon - for implementation of the actioIans for the above, and any language-specific stuff
 
 
 ## File Manager commands
@@ -181,6 +209,22 @@ Notes:
 
 • If there no hidden files or folders, and the items are displayed in alphabetical order, you can typically issue the `follow <number>`, `file <number>` and `open <number>` commands based on the displayed order.
 
+## Terminal commands
+
+Many terminal programs are supported out of the box, but you may not want all the commands enabled. 
+
+To disable various commandsets in your terminal, find the relevant talon file and enable/disable the tags for command sets as appropriate.
+
+```
+tag(): user.file_manager
+tag(): user.git
+tag(): user.kubectl
+tag(): user.tabs
+```
+
+For instance, kubectl commands (kubernetes) aren't relevant to everyone.
+
+
 ## Jetbrains commands
 
 For Jetbrains commands to work you must install https://plugins.jetbrains.com/plugin/10504-voice-code-idea
@@ -191,7 +235,6 @@ into each editor.
 Several options are configurable via a single settings file out of the box. Any setting can be made context specific as needed (e.g., per-OS, per-app, etc). 
 
 https://github.com/knausj85/knausj_talon/blob/master/settings.talon
-
 
 
 ```
@@ -225,6 +268,9 @@ The most commonly adjusted settings are probably
 
 • `user.mouse_wheel_down_amount` and `user.mouse_continuous_scroll_amount` for adjusting the scroll amounts for the various scroll commands.
 
+• Uncomment `tag(): user.mouse_grid_enabled` to enable the mouse grid.
+
+
 # Collaborators
 
 This repository is now officially a team effort. The following contributors have direct access:
@@ -232,6 +278,8 @@ This repository is now officially a team effort. The following contributors have
 - @fidgetingbits
 - @knausj85 
 - @rntz
+- @splondike
+- @pokey
 
 Collaborators will reply to issues and pull requests as time and health permits. Please be patient.
 
@@ -287,3 +335,7 @@ user.code_libraries
 
 where appropriate. See e.g. csharp.py/csharp.talon. At least, until we come up with something better 👍 
 
+# Talon documentation
+For official documentation on Talon's API and features, please visit https://talonvoice.com/docs/. 
+
+For community-generated documentation on Talon, please visit https://talon.wiki/
